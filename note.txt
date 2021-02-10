@@ -1,0 +1,38 @@
+Dökümantasyon
+https://github.com/BTCTrader/broker-api-docs/blob/master/README-pro.md
+
+https://docs.btcturk.com/?python#cancel-order
+
+
+virtualenv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+
+sudo docker rmi $(sudo docker images -f "dangling=true" -q)
+
+
+docker build -t satoshi-bot-btc .
+docker run -d -it --rm --name="btc" satoshi-bot-btc
+
+docker run -e BTC_API_PUBLIC_KEY="96f2a233-8865-4374-b212-4838e963b8bd" -e BTC_API_PRIVATE_KEY="N7CGycXdCAfsGPc3ZIvbICP9REjzbV9A" -d -it --rm --name="btc" satoshi-bot-btc 
+
+--------------------------------------------
+Piyasa Emri
+Sadece miktar belirtilerek verilen emirlerdir. 
+Piyasa emri, emir miktarı karşılanana kadar karşı taraftaki en iyi fiyatlı emirlerle eşleşerek gerçekleşir. 
+En iyi fiyattan alış ya da satış isteğinizi karşılayacak kadar derinlik yok ise, emrinizin kalanı bir sonraki en iyi fiyattan gerçekleşir. 
+Kullanıcılarımızı korumak adına koyduğumuz kural gereği piyasa fiyatının %5 yukarısından veya altından gerçekleşmesi gereken emirler otomatik olarak iptal edilir.
+
+Limit Emri
+Fiyat ve miktar belirtilen emirlerdir. 
+Emrin gerçekleşmeyen bölümü işlem görmedikçe emir defterinde bekletilir. 
+Emir defterinde bekleyen miktardaki bakiyeniz blokelidir. 
+Emir eşleşene veya iptal edilene kadar blokeli tutar çekilemez, başka bir emirde kullanılamaz.
+
+
+Stop Emri
+Güncel fiyat, tetikleme fiyatına geldiğinde emir defterine eklenen emirlerdir. 
+Piyasa fiyatı tetikleme fiyatına ulaştığı anda Stop Limit emirler belirlenen fiyattan emir defterine eklenir. 
+Stop Piyasa emirleri, o anki piyasa fiyatından alınır veya satılır. 
+Stop emir tipi kârınızı korumak veya zararınızı belli bir seviyede tutmak için kullanılır.
+

@@ -1,0 +1,1 @@
+release: python main_bot.py

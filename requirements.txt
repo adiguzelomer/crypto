@@ -1,0 +1,4 @@
+requests==2.22.0
+websocket-client==0.57.0
+environs==9.3.0
+#python-telegram-bot==13.1
